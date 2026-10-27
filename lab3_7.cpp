@@ -1,35 +1,58 @@
-#include <windows.h>
+#include <windows.h> // Для кодировки консоли
+#include <iostream> // Для ввода и вывода
+#include <iomanip> // Для форматирования
+#include <limits> // Для очистки буфера
 
-#include <iomanip>
-#include <iostream>
-using namespace std;
+using namespace std; // Стандартное пространство имён
 
-int main() {
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
-    double a, b;
+int main() { // Начало программы
+    
+    SetConsoleCP(65001); // Кодировка ввода UTF-8
+    SetConsoleOutputCP(65001); // Кодировка вывода UTF-8
+
+    double a, b; // Переменные для сторон прямоугольника
 
     cout << "Введите первую сторону: ";
-    cin >> a;
+    // Просим ввести первую сторону
+    
+    cin >> a; // Считываем первую сторону
 
     cout << "Введите вторую сторону: ";
-    cin >> b;
+    // Просим ввести вторую сторону
 
+    cin >> b; // Считываем вторую сторону
     if (a > 0 && b > 0) {
+    // Проверяем, что обе стороны больше нуля
+        
         double area = a * b;
+        // Вычисляем площадь прямоугольника
+        
         double perimeter = 2 * (a + b);
-
+        // Вычисляем периметр прямоугольника
+        
         cout << fixed << setprecision(2);
+        // Выводим два знака после точки
+        
+        cout << "Площадь прямоугольника: "
+             << area << endl;
+        // Выводим площадь
 
-        cout << "Площадь прямоугольника: " << area << endl;
-        cout << "Периметр прямоугольника: " << perimeter << endl;
+        cout << "Периметр прямоугольника: "
+             << perimeter << endl;
+        // Выводим периметр
     } else {
+    // Если хотя бы одна сторона меньше или равна нулю
+
         cout << "Стороны должны быть больше нуля" << endl;
-    }
-    std::cin.ignore(256, '\n');
+        // Выводим сообщение об ошибке
+}
+    cin.ignore((numeric_limits<streamsize>::max)(), '\n');
+    // Удаляем оставшийся символ Enter
 
-    std::cout << "Нажмите Enter для выхода...";
-    std::cin.get();
+    cout << "\nНажмите Enter для выхода...";
+    // Просим пользователя нажать Enter
+    
+    cin.get(); // Ожидаем нажатия Enter
 
-    return 0;
+    return 0; // Успешное завершение программы
 }
